@@ -1,0 +1,35 @@
+<div class="row">
+    <div class="offset-10 col-md-2 mt-2">  <a routerLink="/produto/novo" routerLinkActive="router-link-active" href="javascript:void(0)">Cadastrar Produto</a> </div>
+  </div> <br>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="table-responsive">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>Código</th>
+              <th>Produto</th>
+              <th>Descrição</th>
+              <th>Preço</th>
+              <th>Estoque</th>
+              <th>Detalhes</th>
+              <th>Atualizar</th>
+              <th>Apagar</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let produto of produtos" [ngClass]="{'bg-warning': produto.estoque <= 10, 'bg-danger': produto.estoque == 0}">
+              <td>{{produto.produtoId}}</td>
+              <td>{{produto.nome}}</td>
+              <td>{{produto.descricao}}</td>
+              <td>{{produto.preco}}</td>
+              <td>{{produto.estoque}}</td>
+              <td><button type="button" id="details" class="btn btn-success" routerLink="/produto/detalhes">Detalhes</button></td>
+              <td><button type="button" id="update" class="btn btn-primary" routerLink="/produto/editar">Editar</button></td>
+              <td><button type="button" id="delete" class="btn btn-danger " [ngClass]="{'bg-warning': produto.estoque == 0 }" routerLink="/produto/excluir">Excluir <i class="fas fa-trash"></i> </button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
