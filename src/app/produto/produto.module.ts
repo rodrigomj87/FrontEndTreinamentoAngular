@@ -1,19 +1,46 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-import { ProdutoRoutingModule } from './produto-routing.module';
-import { ProdutoListComponent } from './produto-list/produto-list.component';
-import { NovoProdutoComponent } from './novo-produto/novo-produto.component';
-import { DetalhesProdutoComponent } from './detalhes-produto/detalhes-produto.component';
-import { EditarProdutoComponent } from './editar-produto/editar-produto.component';
-import { ExcluirProdutoComponent } from './excluir-produto/excluir-produto.component';
+import { NgBrazil } from 'ng-brazil';
+import { TextMaskModule } from 'angular2-text-mask';
+import { NgxSpinnerModule } from "ngx-spinner";
+import { ImageCropperModule } from 'ngx-image-cropper';
 
+import { ProdutoRoutingModule } from './produto.route';
+import { ProdutoAppComponent } from './produto.app.component';
+import { ListaComponent } from './lista/lista.component';
+import { NovoComponent } from './novo/novo.component';
+import { EditarComponent } from './editar/editar.component';
+import { ExcluirComponent } from './excluir/excluir.component';
+import { DetalhesComponent } from './detalhes/detalhes.component';
+import { ProdutoService } from './services/produto.service';
+import { ProdutoResolve } from './services/produto.resolve';
+import { ProdutoGuard } from './services/produto.guard';
 
 @NgModule({
-  declarations: [ProdutoListComponent, NovoProdutoComponent, DetalhesProdutoComponent, EditarProdutoComponent, ExcluirProdutoComponent],
+  declarations: [
+    ProdutoAppComponent,
+    ListaComponent,
+    NovoComponent,
+    EditarComponent,
+    ExcluirComponent,
+    DetalhesComponent
+  ],
   imports: [
     CommonModule,
-    ProdutoRoutingModule
+    ProdutoRoutingModule,
+    NgBrazil,
+    TextMaskModule,
+    NgxSpinnerModule,
+    FormsModule,
+    ReactiveFormsModule,
+    ImageCropperModule
+  ],
+  providers: [
+    ProdutoService,
+    ProdutoResolve,
+    ProdutoGuard
   ]
 })
 export class ProdutoModule { }

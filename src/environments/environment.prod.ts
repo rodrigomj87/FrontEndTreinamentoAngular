@@ -1,4 +1,5 @@
 export const environment = {
   production: true,
-  urlAddress: 'http://www.quitandaonline.com'
+  apiUrlv1: 'https://localhost:5001/api/v1/',
+  imagensUrl: 'https://localhost:5001/'
 };

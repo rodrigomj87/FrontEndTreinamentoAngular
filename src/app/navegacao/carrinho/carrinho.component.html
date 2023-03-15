@@ -1,0 +1,83 @@
+<div class="card container p-0">
+  <div class="card-header bg-primary text-light">
+    <div class="row">
+      <div class="col-8">
+        <h4 class="m-0">
+          <i class="fas fa-shopping-cart"></i>
+          Carrinho de Compras
+        </h4>
+      </div>
+      <div class="col-4 text-right">
+        <button class="btn btn-outline-light btn-sm pull-right" [routerLink]="['/home']">Continuar Comprando</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="card-body" *ngIf="itensCarrinho">
+    <ng-container *ngFor="let item of itensCarrinho">
+      <div class="row">
+        <div class="col-sm-3 col-md-2 text-center mb-2 mb-sm-0">
+          <img class="img-thumbnail" src="{{ imagens }}{{ item.imagem }}">
+          <!-- <img class="img-thumbnail" [src]="imagens + item.imagem"> -->
+        </div>
+        <div class="col-sm-9 col-md-4 col-lg-5 text-left">
+          <h4 class="product-name"><strong>{{item.nome}}</strong></h4>
+          <h4><small>{{item.descricao}}</small></h4>
+        </div>
+        <div class="col-sm-12 col-md-6 col-lg-5">
+          <div class="row">
+            <div class="col-4 text-md-right pt-2 text-right">
+              <h6>
+                <strong>{{ item.valor | currencyBrazil }}</strong>
+                <b><span class="text-muted"> x</span></b>
+              </h6>
+            </div>
+            <div class="col-5">
+              <div>
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <button class="btn btn-outline-secondary" (click)="decrement(item)"
+                      [disabled]="item.quantidade == 1">-</button>
+                  </div>
+                  <input type="number" class="form-control text-center" [(ngModel)]="item.quantidade" > 
+                  <!-- (ngModelChange)="atualizarItem(item)" -->
+                  <div class="input-group-append">
+                    <button class="btn btn-outline-secondary" (click)="increment(item)">+</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-3 text-right">
+              <button type="button" class="btn btn-outline-danger btn-xs btn-del" (click)="removerItem(item.id)">
+                <i class="fa fa-trash" aria-hidden="true"></i>
+              </button>
+            </div>
+            <div class="col-9 mr-auto text-right mt-1 text-muted">
+              <b>{{item.subTotal | currencyBrazil}}</b>
+            </div>
+          </div>
+        </div>
+      </div>
+      <hr>
+    </ng-container>
+  </div>
+
+  <div class="card-body text-center" *ngIf="itensCarrinho.length ==0">
+    <h3>Seu Carrinho de Compras está vazio.</h3>
+  </div>
+
+  <div class="card-footer">
+    <div class="row">
+      <div class="col-12 col-sm-6 text-center text-sm-left">
+        <div class="mb-2">
+          Valor Total: <b id="valorPedido">{{ (valorTotalCarrinho == null || valorTotalCarrinho == undefined || valorTotalCarrinho == 0) ? 'R$ 0,00' : (valorTotalCarrinho | currencyBrazil) }}</b>
+        </div>
+      </div>
+      <div class="col-12 col-sm-6 text-center text-sm-right">
+        <button class="btn btn-success pull-right" [disabled]="itensCarrinho.length == 0" [ngClass]="{'disabled': itensCarrinho.length == 0}" routerLink="/checkout">Finalizar Pedido</button>
+        <button class="btn btn-outline-info mr-2  pull-right" [routerLink]="['/home']">Continuar Comprando</button>
+      </div>
+    </div>
+  </div>
+
+</div>

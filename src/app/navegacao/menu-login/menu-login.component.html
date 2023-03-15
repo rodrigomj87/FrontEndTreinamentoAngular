@@ -1,0 +1,49 @@
+<!-- <ul [ngSwitch]="usuarioLogado()" class="navbar-nav">
+    <li *ngSwitchCase="false" class="nav-item" style="padding-right: 30px;">
+        <a class="btn btn-primary" [routerLink]="['/conta/login']">Entrar</a>
+    </li>
+    <li *ngSwitchCase="false" class="nav-item">
+        <a class="btn btn-success" [routerLink]="['/conta/cadastro']">Crie sua conta</a>
+    </li>
+
+    <li *ngSwitchCase="true" class="nav-item">
+        <a class="nav-link text-dark" id="saudacaoUsuario" href="javascript:void(0)">{{ email }}</a>
+    </li>
+    <li *ngSwitchCase="true" class="nav-item">
+        <a class="nav-link text-dark" href="javascript:void(0)" (click)="logout()">
+            Sair <span class="fas fa-sign-out-alt"></span></a>
+    </li>
+</ul> -->
+<div class="row">
+    <a class="nav-link mr-2" href="javascript:void(0)" [routerLink]="['/carrinho']">
+        <span class="position-relative">
+          <i class="fas fa-shopping-cart"></i>
+          <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger text-white">{{ qtdItensCarrinho === 0 ? '' :  qtdItensCarrinho}}</span>
+        </span>
+      </a>
+      
+    <div *ngIf="usuarioLogado()" ngbDropdown class="d-inline-block ">
+
+        <button class="btn btn-outline-info" id="dropdownMenuLink" ngbDropdownToggle> {{ email }}</button>
+        <div ngbDropdownMenu aria-labelledby="dropdownMenuLink">
+            <button ngbDropdownItem><i class="fas fa-user"></i> Meu Perfil</button>
+            <button ngbDropdownItem><i class="fas fa-cog"></i> Configurações</button>
+            <hr class="dropdown-divider">
+            <button ngbDropdownItem [routerLink]="['/fornecedores/listar-todos']"><i class="fas fa-cog"></i> Fornecedores</button>
+            <button ngbDropdownItem [routerLink]="['/produtos/listar-todos']"><i class="fas fa-cog"></i> Produtos</button>
+            <hr class="dropdown-divider">
+            <button ngbDropdownItem (click)="logout()"><i class="fa fa-sign-out" aria-hidden="true"></i> Sair</button>
+        </div>
+    </div>
+
+    <div *ngIf="!usuarioLogado()" class="nav-item">
+        <a class="nav-link" href="javascript:void(0)" routerLink="/conta/login"><i class="fa fa-sign-in" aria-hidden="true"></i> Entrar</a>
+    </div>
+
+    <div *ngIf="!usuarioLogado()" class="nav-item">
+        <a class="nav-link" href="javascript:void(0)" routerLink="/conta/cadastro"><i class="fa fa-user-plus" aria-hidden="true"></i> Crie sua
+            conta</a>
+    </div>
+
+</div>
+  

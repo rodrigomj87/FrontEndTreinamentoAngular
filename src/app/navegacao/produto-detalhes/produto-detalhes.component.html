@@ -1,0 +1,47 @@
+<div class="container main-container" *ngIf="produto">
+    <h4>{{ produto.nome }} </h4>
+    <br>
+
+    <div class="row">
+        <div class="col-md-6">
+            <img src="{{ imagens }}{{ produto.imagem }}" style="width: 428px; height: 300px; object-fit: contain;">
+        </div>
+        <div class="col-md-6">
+            <dl>
+                <dt>
+                    Fornecedor
+                </dt>
+                <dd>
+                    {{ produto.nomeFornecedor }}
+                </dd>
+                <dt>
+                    Nome
+                </dt>
+                <dd>
+                    {{ produto.nome }}
+                </dd>
+                <dt>
+                    Descrição
+                </dt>
+                <dd>
+                    {{ produto.descricao }}
+                </dd>
+                <dt>
+                    Valor
+                </dt>
+                <dd>
+                    {{ produto.valor | currencyBrazil }}
+                </dd>
+            </dl>
+
+            <div>
+                <a class="btn btn-warning" (click)="adicionarAoCarrinho()">Adicionar ao carrinho</a>&nbsp;
+                <a class="btn btn-info" href="javascript:window.history.back();">Voltar</a>
+            </div>
+        </div>
+    </div>
+
+</div>
+<div class="container main-container">
+    <h4>Produto não encontrado</h4>
+</div>

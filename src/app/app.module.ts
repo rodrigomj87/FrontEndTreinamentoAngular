@@ -1,36 +1,37 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { ToastrModule } from 'ngx-toastr';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HomeComponent } from './home/home.component';
-import { MenuComponent } from './menu/menu.component';
-import { FooterComponent } from './footer/footer.component';
-import { NotFoundComponent } from './error-pages/not-found/not-found.component';
-import { ProdutoModule } from './produto/produto.module';
-import { InternalServerComponent } from './error-pages/internal-server/internal-server.component';
-import { ContaModule } from './conta/conta.module';
+import { NavegacaoModule } from './navegacao/navegacao.module';
+
+import { ErrorInterceptor } from './services/error.handler.service';
+
+export const httpInterceptorProviders = [
+  { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+];
 
 @NgModule({
   declarations: [
-    AppComponent,
-    HomeComponent,
-    MenuComponent,
-    FooterComponent,
-    NotFoundComponent,
-    InternalServerComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    NavegacaoModule,
+    NgbModule,
     BrowserAnimationsModule,
-    HttpClientModule,
-    ProdutoModule,
-    ContaModule,
+    ToastrModule.forRoot(),
+    HttpClientModule
   ],
-  providers: [],
+  providers: [
+    httpInterceptorProviders
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

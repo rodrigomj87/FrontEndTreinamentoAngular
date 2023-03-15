@@ -1,0 +1,22 @@
+<button class="btn btn-primary sidebar-toggle-btn" (click)="toggleSidebar()" [style.left]="sidebarOpen ? '205px' : '0'" [style.top]="'65px'">
+  <i class="fas fa-bars"></i> Categorias
+</button>
+<nav #sidebar [class.d-none]="!sidebarOpen">
+  
+  <ul class="level1">Categorias</ul>
+  <ul class="level1">
+    
+    <li><a routerLink="/page1">Page 1</a></li>
+    <li class="has-submenu">
+      <a routerLink="#">Page 2</a>
+      <ul class="level2">
+        <li><a routerLink="/page2/subpage1">Subpage 1</a></li>
+        <li><a routerLink="/page2/subpage2">Subpage 2</a></li>
+        <li><a routerLink="/page2/subpage3">Subpage 3</a></li>
+      </ul>
+    </li>
+    <li><a routerLink="/page3">Page 3</a></li>
+  </ul>
+  
+  </nav>
+  
